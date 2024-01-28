@@ -1,0 +1,16 @@
+{
+  "name": "self-host-chrome-ext",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Joshua Avrick",
+  "license": "ISC",
+  "dependencies": {
+    "crx": "^5.0.1",
+    "express": "^4.18.2",
+    "ngrok": "^5.0.0-beta.2"
+  }
+}
