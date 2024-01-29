@@ -3,6 +3,18 @@
   "version": "0.0.1",
   "description": "Launch a public server to host your Chrome extension for prototyping, testing, and development.",
   "main": "index.js",
+  "homepage": "https://github.com/JHAvrick/crx-server#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JHAvrick/crx-server"
+  },
+  "keywords": [
+    "crx",
+    "extension",
+    "chrome",
+    "express",
+    "ngrok"
+  ],
   "scripts": {
     "test": "jest --runInBand --openHandlesTimeout=0"
   },
