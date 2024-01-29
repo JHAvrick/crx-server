@@ -2,10 +2,11 @@
 
 CRXServer allows you to quickly package a browser extension as a CRX and host it to a public URL, which can then be used to deploy your extension for rapid testing or prototyping purposes. CRXServer uses [ngrok](https://www.npmjs.com/package/ngrok) internally, so you may need to procure a (free) auth token.
 
-**Basic Example:**
+`npm install --save-dev crx-server`
+
+## Basic Example
 
 ```js
-const path = require('path');
 const crxServer = CRXServer({
     extensionDir: path.resolve(__dirname, 'extension'),
     publicDir: path.resolve(__dirname, 'public'),
