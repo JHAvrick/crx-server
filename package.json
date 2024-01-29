@@ -1,10 +1,10 @@
 {
-  "name": "self-host-chrome-ext",
+  "name": "crx-server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Launch a public server to host your Chrome extension for prototyping, testing, and development.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --runInBand --openHandlesTimeout=0"
   },
   "author": "Joshua Avrick",
   "license": "ISC",
@@ -12,5 +12,8 @@
     "crx": "^5.0.1",
     "express": "^4.18.2",
     "ngrok": "^5.0.0-beta.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }

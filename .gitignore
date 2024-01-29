@@ -1,1 +1,4 @@
 /node_modules
+/sandbox.js
+/test/ngrok.config.js
+/test/extension/key.pem
