@@ -117,7 +117,7 @@ The `update.xml` endpoint is polled every few hours, so you'll likely want to ma
 Get the public URL for the endpoint delivering the `update.xml`. If deploying through, say, Google Workspace, this is the URL you would use.
 
 ```js
-let url = crxServer.update('patch'); 
+let url = crxServer.getUpdateUrl(); 
 ```
 
 ## CRXServer.getExtensionId()

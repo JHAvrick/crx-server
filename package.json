@@ -1,6 +1,6 @@
 {
   "name": "crx-server",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Launch a public server to host your Chrome extension for prototyping, testing, and development.",
   "main": "index.js",
   "homepage": "https://github.com/JHAvrick/crx-server#readme",
