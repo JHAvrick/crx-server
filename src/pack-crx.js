@@ -30,7 +30,7 @@ function incrementVersion(sem, ver) {
 const defaults = Object.freeze({
     extensionDir: null,
     publicDir: null,
-    privateKeyPath: null,
+    privateKey: null,
     baseUrl: null,
     version: null
 })
@@ -79,7 +79,7 @@ const packCRX = async (opts = {}) => {
     //Pack our CRX
     const crx = new ChromeExtension({
         codebase: `${opts.baseUrl}/extension`,
-        privateKey: fs.readFileSync(opts.privateKeyPath ?? path.resolve(opts.extensionDir, 'key.pem'))
+        privateKey: fs.readFileSync(opts.privateKey ?? path.resolve(opts.extensionDir, 'key.pem'))
     });
 
 

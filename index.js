@@ -5,7 +5,7 @@ const defaults = Object.freeze({
     port: 9000,
     extensionDir: null,
     publicDir: null,
-    privateKeyPath: null,
+    privateKey: null,
     ngrok: {
         //https://www.npmjs.com/package/ngrok#options
     },
