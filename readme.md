@@ -65,7 +65,7 @@ const crxServer = CRXServer({
 
 ## CRXServer.start(skipCRXPack = false)
 
-Calling `start()` will create a local `express` server two endpoints:
+Calling `start()` will create a local `express` server with two endpoints:
 
  - `/update.xml` - Provides `update.xml`, which contains metadata about the extension, including its current version and the location of its endpoint
  - `/extension` - Provides the actual extension CRX
@@ -132,4 +132,4 @@ module.exports = {
 }
 ```
 
-You can also pass in any options for `ngrok.connect()`. [See docs here.](https://www.npmjs.com/package/ngrok#options).
+Then you can simply `npm run test`.
