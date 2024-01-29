@@ -30,8 +30,9 @@ const CRXServer = (opts = {}) => {
         throw new Error('You must specify an extension directory ("extensionDir") and public directory ("publicDir").');
     }
 
-    let baseUrl = null, stop = null;
+    let extensionId = null, baseUrl = null, stop = null;
     const getUpdateUrl = () =>  `${baseUrl}/update.xml`;
+    const getExtensionId = () => extensionId;
     return {
         /**
          * To be called after server is already active. Calling `update()` will repack the extension and
@@ -41,7 +42,9 @@ const CRXServer = (opts = {}) => {
          * to manually specify the version. If the version is left blank, the current version set in the manifest will be used.
          * Note that if the version does not change, Chrome will not pull updates for the extension when polling.
          */
-        update: (version) => packCRX({ ...opts, baseUrl, version }),
+        update: async (version) => {
+            extensionId = await packCRX({ ...opts, baseUrl, version });
+        },
         /**
          * Start the local server. This will also perform the initial packing of the CRX and create the `update.xml` file.
          * Optionally, you can pass `true` to skip the initial packing of the CRX, which you might want to do if you've 
@@ -52,7 +55,7 @@ const CRXServer = (opts = {}) => {
         start: async (skipCRXPack = false) => {
             [baseUrl, stop] = await deployCRX(opts);
             if (!skipCRXPack) {
-                await packCRX({ ...opts, updateUrl: getUpdateUrl() });
+                extensionId = await packCRX({ ...opts, updateUrl: getUpdateUrl() });
             }
             return baseUrl;
         },
@@ -60,7 +63,8 @@ const CRXServer = (opts = {}) => {
          * Kill the local server.
          */
         stop: () => stop?.(),
-        getUpdateUrl
+        getUpdateUrl,
+        getExtensionId
     }
 }
 

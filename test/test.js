@@ -28,16 +28,18 @@ const crxServer = CRXServer({
     ngrok: ngrokConfig
 });
 
-afterAll(() => {
-    crxServer.stop();
-});
+// afterAll(() => {
+//     crxServer.stop();
+// });
 
 describe('CRXServer', () => {
     test('CRXServer.start() - CRX server starts without error and endpoints are available', async () => {
 
         //start the server
         const baseUrl = await crxServer.start();
-        //console.log(`${baseUrl}/update.xml`);
+        console.log(`${baseUrl}/update.xml`);
+        console.log(`${baseUrl}/extension`);
+        console.log(`Extension ID: ${crxServer.getExtensionId()}`);
         
         expect(baseUrl).toBeTruthy();
 

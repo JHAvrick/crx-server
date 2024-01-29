@@ -87,10 +87,13 @@ const packCRX = async (opts = {}) => {
         await crx.load(opts.extensionDir);
         let crxBuffer = await crx.pack();
         let updateXML = crx.generateUpdateXML();
+        let extensionId = crx.generateAppId();
 
         fs.writeFileSync(path.resolve(opts.publicDir, 'update.xml'), updateXML);
         fs.writeFileSync(path.resolve(opts.publicDir, 'extension.crx'), crxBuffer);
         fs.writeFileSync(path.resolve(opts.extensionDir, 'manifest.json'), JSON.stringify(manifest, null, '\t'), 'utf-8');
+
+        return extensionId;
     } catch (error) {
         console.warn(error);
     }

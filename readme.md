@@ -87,7 +87,6 @@ await crxServer.start(true);
 If you have a static domain and/or are starting the server again after having called `stop()`, you could potentially skip packing the CRX. Generally it won't matter.
 
 ## CRXServer.stop()
-
 Stops the server and closes the `ngrok` connection.
 
 ```js
@@ -95,7 +94,6 @@ await crxServer.stop();
 ```
 
 ## CRXServer.update()
-
 This method can be called once the server has started in order to pack the extension again. This is extremely useful for pushing out rapid updates for testing on target browsers or devices. The existing endpoints will simply deliver the updated files, assuming your server is started.
 
 ```js
@@ -115,16 +113,21 @@ Note that these versions have no affect on your actual `manifest.json` and need 
 The `update.xml` endpoint is polled every few hours, so you'll likely want to manually refresh extensions (`chrome://extensions/` --> Update) on the target device after calling `update()`.
 
 
-### CRXServer.getUpdateUrl()
-
+## CRXServer.getUpdateUrl()
 Get the public URL for the endpoint delivering the `update.xml`. If deploying through, say, Google Workspace, this is the URL you would use.
 
 ```js
 let url = crxServer.update('patch'); 
 ```
 
-# Run Tests
+## CRXServer.getExtensionId()
+Get the extension ID generated on the most recent call to either `start()` or `update()`.
 
+```js
+let url = crxServer.getExtensionId(); 
+```
+
+# Run Tests
 Before running tests you'll want to add your ngrok config (if not already configured via CLI). Create a file called `ngrok.config.js` in the `test` directory and simply export an object w/ an `authtoken` property:
 
 ```js
