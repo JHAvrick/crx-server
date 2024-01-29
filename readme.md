@@ -54,6 +54,12 @@ const crxServer = CRXServer({
      */
     port: 8080,
     /**
+     * Callback triggered when one of the server endpoints receives a request.
+     */
+    onRequest: (req) => {
+        //Called on every request to the server
+    },
+    /**
      * ngrok.connect() options. All you need here is the authtoken, but you can provide
      * other options as necessary. 
      */
@@ -94,7 +100,7 @@ await crxServer.stop();
 ```
 
 ## CRXServer.update()
-This method can be called once the server has started in order to pack the extension again. This is extremely useful for pushing out rapid updates for testing on target browsers or devices. The existing endpoints will simply deliver the updated files, assuming your server is started.
+This method can be called once the server has started in order to pack the extension again. This is extremely useful for pushing out rapid updates. The existing endpoints will simply deliver the updated files, assuming your server is active.
 
 ```js
 /**
@@ -127,6 +133,15 @@ Get the extension ID generated on the most recent call to either `start()` or `u
 let url = crxServer.getExtensionId(); 
 ```
 
+## CRXServer.onRequest(callback)
+Set a callback to be triggered on every request to the server. Useful for debugging.
+
+```js
+let url = crxServer.onRequest((req) => {
+    //Called on every request to the server
+}); 
+```
+
 # Run Tests
 Before running tests you'll want to add your ngrok config (if not already configured via CLI). Create a file called `ngrok.config.js` in the `test` directory and simply export an object w/ an `authtoken` property:
 
@@ -136,4 +151,4 @@ module.exports = {
 }
 ```
 
-Then you can simply `npm run test`.
+Then `npm run test`.

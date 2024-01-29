@@ -74,7 +74,7 @@ describe('CRXServer', () => {
         expect(xmlVersionMatch(updateXml, '3.0.5')).toBe(true);
     });
 
-    test('CRXServer().update("patch") - update.xml is generated with new patch version', async () => {
+    test('CRXServer.update("patch") - update.xml is generated with new patch version', async () => {
         jest.resetModules();
 
         const url = crxServer.getUpdateUrl();
@@ -87,5 +87,22 @@ describe('CRXServer', () => {
         updateXml = await updateXml.text();
 
         expect(xmlVersionMatch(updateXml, '3.0.6')).toBe(true);
+    });
+
+    
+    test('CRXServer.onRequest - onRequest callback is triggered on request to either endpoint', (done) => {
+        jest.resetModules();
+
+        let reqCount = 0;
+        crxServer.onRequest((req) => {
+            expect(req.url).toMatch(/update.xml|extension/);
+            reqCount++;
+            if (reqCount === 2) {
+                done();
+            }
+        })
+
+        fetch(crxServer.getUpdateUrl());
+        fetch(crxServer.getExtensionUrl());
     });
 })

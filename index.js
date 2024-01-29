@@ -6,6 +6,7 @@ const defaults = Object.freeze({
     extensionDir: null,
     publicDir: null,
     privateKey: null,
+    onRequest: null,
     ngrok: {
         //https://www.npmjs.com/package/ngrok#options
     },
@@ -18,6 +19,7 @@ const defaults = Object.freeze({
  * @param {string} opts.extensionDir - The directory containing the extension files
  * @param {string} opts.publicDir - The directory to output the packed CRX and `update.xml`
  * @param {string} opts.port - The port to serve the CRX on
+ * @param {string} opts.onRequest - Callback when a request hits one of the local server endpoints. The callback will be passed the request object.
  * @param {string} opts.ngrok - ngrok.connect() options, which can be found here: https://www.npmjs.com/package/ngrok#options
  * Note that the port option will be overridden by the port specified in the opts object.
  *  
@@ -63,7 +65,15 @@ const CRXServer = (opts = {}) => {
          * Kill the local server.
          */
         stop: () => stop?.(),
+        /**
+         * Register a callback to be notified when a request hits one of the server endpoints.
+         * 
+         * @param {Function} callback - Callback when a request hits one of the local server endpoints. The callback will be passed the request object.
+         * @returns 
+         */
+        onRequest: (callback) => opts.onRequest = callback,
         getUpdateUrl,
+        getExtensionUrl: () => `${baseUrl}/extension`,
         getExtensionId
     }
 }
