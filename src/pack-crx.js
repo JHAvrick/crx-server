@@ -64,6 +64,8 @@ const getNextVersion = (opts, manifest) => {
 const packCRX = async (opts = {}) => {
     opts = Object.assign({}, defaults, opts);
 
+
+
     //Ensure our output directory exists and create it if not.
     fs.mkdirSync(opts.publicDir, { recursive: true });
 
@@ -71,7 +73,8 @@ const packCRX = async (opts = {}) => {
     let manifest = JSON.parse(fs.readFileSync(path.resolve(opts.extensionDir, 'manifest.json'), 'utf-8'));
     let modified = Object.assign({}, manifest);
     modified.version = getNextVersion(opts, manifest);
-    modified.update_url = `${opts.baseUrl}/update.xml`;
+    //modified.update_url = `${opts.baseUrl}/update.xml`;
+    modified.update_url = opts.updateUrl;
 
     //Write our new manifest
     fs.writeFileSync(path.resolve(opts.extensionDir, 'manifest.json'), JSON.stringify(modified, null, '\t'), 'utf-8');

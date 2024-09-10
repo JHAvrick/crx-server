@@ -45,7 +45,7 @@ const CRXServer = (opts = {}) => {
          * Note that if the version does not change, Chrome will not pull updates for the extension when polling.
          */
         update: async (version) => {
-            extensionId = await packCRX({ ...opts, baseUrl, version });
+            extensionId = await packCRX({ ...opts, baseUrl, updateUrl: getUpdateUrl(), version });
         },
         /**
          * Start the local server. This will also perform the initial packing of the CRX and create the `update.xml` file.
@@ -57,7 +57,7 @@ const CRXServer = (opts = {}) => {
         start: async (skipCRXPack = false) => {
             [baseUrl, stop] = await deployCRX(opts);
             if (!skipCRXPack) {
-                extensionId = await packCRX({ ...opts, updateUrl: getUpdateUrl() });
+                extensionId = await packCRX({ ...opts, baseUrl, updateUrl: getUpdateUrl() });
             }
             return baseUrl;
         },
