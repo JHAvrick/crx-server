@@ -20,5 +20,6 @@
 				"popup.js"
 			]
 		}
-	]
+	],
+	"update_url": "null/update.xml"
 }
